@@ -59,4 +59,30 @@ router.get("/", protectRoute, async (req, res) => {
     }
 })
 
+router.get("/user", protectRoute, async (req, res) => {
+    try {
+        const books = await Book.find({ user: req.user._id })
+            .sort({ createdAt: -1 });
+        res.json(books);
+
+    } catch (error) {
+        console.error("Get user books error", error.message);
+        res.status(500).json({ message: "internal server error" });
+    }
+})
+
+router.delete("/:id", protectRoute, async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id);
+        if (!book) return res.status(404).json({ message: "Book not found" });
+        if (book.user.toString() != req.user._id.toString()) return res.status(401).json({ message: "unauthorized" });
+        //delete image from storage then in db
+        await book.deleteOne();
+        res.json({ message: "Book deleted successfully" });
+
+    } catch (error) {
+        console.log("Error deleting book", error);
+        res.status(500).json({ message: "internal server error" });
+    }
+})
 export default router;
