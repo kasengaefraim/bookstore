@@ -7,6 +7,7 @@ const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
+    
     backgroundColor: COLORS.background,
     padding: 20,
     justifyContent: "center",

@@ -1,5 +1,6 @@
 import SafeScreen from "@/components/SafeScreen";
 import { Stack } from "expo-router";
+import {StatusBar} from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
@@ -10,6 +11,7 @@ export default function RootLayout() {
         <Stack.Screen name="index" />
         <Stack.Screen name="(auth)" />
       </Stack>
+      <StatusBar style="dark"/>
       </SafeScreen>
     </SafeAreaProvider>
   );

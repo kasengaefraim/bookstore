@@ -2,7 +2,6 @@ import { View, Text, StyleSheet } from 'react-native'
 import React, { ReactNode } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import COLORS from '@/constants/colors';
-
 type SafeScreenProps = {
   children: ReactNode;
 };
